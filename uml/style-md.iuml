@@ -1,0 +1,23 @@
+hide circle
+hide methods
+'hide attributes
+skinparam handwritten true
+skinparam linetype ortho 
+skinparam defaultFontName Papyrus
+skinparam Arrow{
+    FontColor Black 
+}
+skinparam class {
+    BackgroundColor LightYellow
+    ArrowColor Black
+    BorderColor Black
+    FontSize 14
+    AttributeFontColor Black
+    AttributeFontSize 12
+}
+skinparam note {
+    BackgroundColor LightSkyBlue
+    ArrowColor Black
+    BorderColor Black
+    FontSize 9
+}

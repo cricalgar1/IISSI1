@@ -1,0 +1,25 @@
+@startuml
+title Objetivo 1
+
+!include Clases/Usuario.iuml
+!include Enumerados/Genero.iuml
+!include Clases/Foto.iuml
+!include Clases/Aficion.iuml
+!include Enumerados/ColorOjo.iuml
+!include Enumerados/ColorPelo.iuml
+!include Clases/Like.iuml
+!include Clases/Comentario.iuml
+!include Enumerados/TipoEmpresa.iuml
+!include Enumerados/Tema.iuml
+!include Clases/Empresa.iuml
+!include Clases/Persona.iuml
+!include style-md.iuml
+
+Usuario *-l-"0.10" Foto : sube
+Persona "*" -- "*" Aficion : tiene
+Usuario <|-l- (Empresa, Persona) : {completa, disjunta}
+Foto *-l-"*" Like: tiene
+Foto "1"-u-"*" Comentario: tiene
+Usuario"1"--"*" Comentario: tiene
+
+@enduml

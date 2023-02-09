@@ -1,0 +1,74 @@
+@BASE = http://127.0.0.1:8080/api/v1
+##Registramos usuario
+# @name register
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "nosoynadie@gmail.com",
+	"PASSWORD":"nadie",
+	"nombre": "Nadiesoy",
+	"fechaAlta": "2021-11-06",
+	"fechaBaja": null,
+	"biografia": "La nada y yo somos nada",
+	"direccion": "Calle cualquiera, 1, 3A",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+### Hacer login
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{
+    "email": "nosoynadie@gmail.com", 
+    "PASSWORD": "nadie"
+}
+
+###Añadir aficiones. (OK)
+POST {{BASE}}/aficiones
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "nombre": "Animales"
+}
+
+###Modificar las aficiones. (OK)
+PUT {{BASE}}/aficiones/4
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "nombre": "Fauna"
+}
+
+###Borrar las aficiones que no tienen asignadas nadie.(OK)
+DELETE {{BASE}}/aficiones/4
+Token: {{login.response.body.sessionToken}}
+
+###Registrar aficiones a una persona. (OK)
+POST {{BASE}}/personasaficiones
+Content-Type:  application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+	"usuarioId": 12,
+	"aficionId":1
+}
+
+###
+GET {{BASE}}/personasaficiones
+
+###Borrar aficiones asignada a una persona. (OK)
+DELETE {{BASE}}/personasaficiones/1
+Token: {{login.response.body.sessionToken}}
+
+###Borrar una persona con aficiones. (ERROR)
+DELETE {{BASE}}/personas/1
+Token: {{login.response.body.sessionToken}}
+
+###Borrar aficiones asignadas a personas. (ERROR)
+DELETE {{BASE}}/aficiones/1
+Token: {{login.response.body.sessionToken}}

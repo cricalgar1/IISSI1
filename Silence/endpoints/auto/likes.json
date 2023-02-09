@@ -1,0 +1,62 @@
+{
+    "getAll": {
+        "route": "/likes",
+        "method": "GET",
+        "sql": "SELECT * FROM likes",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all likes"
+    },
+    "getById": {
+        "route": "/likes/$likeId",
+        "method": "GET",
+        "sql": "SELECT * FROM likes WHERE likeId = $likeId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'likes' by its primary key"
+    },
+    "create": {
+        "route": "/likes",
+        "method": "POST",
+        "sql": "INSERT INTO likes(fotoId, emisorId, fechaLike) VALUES ($fotoId, $emisorId, $fechaLike)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'likes'",
+        "request_body_params": [
+            "fotoId",
+            "emisorId",
+            "fechaLike"
+        ]
+    },
+    "update": {
+        "route": "/likes/$likeId",
+        "method": "PUT",
+        "sql": "UPDATE likes SET fotoId = $fotoId, emisorId = $emisorId, fechaLike = $fechaLike WHERE likeId = $likeId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'likes' by its primary key",
+        "request_body_params": [
+            "fotoId",
+            "emisorId",
+            "fechaLike"
+        ]
+    },
+    "delete": {
+        "route": "/likes/$likeId",
+        "method": "DELETE",
+        "sql": "DELETE FROM likes WHERE likeId = $likeId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'likes' by its primary key"
+    }
+}

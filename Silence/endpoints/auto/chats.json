@@ -1,0 +1,60 @@
+{
+    "getAll": {
+        "route": "/chats",
+        "method": "GET",
+        "sql": "SELECT * FROM chats",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all chats"
+    },
+    "getById": {
+        "route": "/chats/$chatId",
+        "method": "GET",
+        "sql": "SELECT * FROM chats WHERE chatId = $chatId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'chats' by its primary key"
+    },
+    "create": {
+        "route": "/chats",
+        "method": "POST",
+        "sql": "INSERT INTO chats(vinculoId, conversacionId) VALUES ($vinculoId, $conversacionId)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'chats'",
+        "request_body_params": [
+            "vinculoId",
+            "conversacionId"
+        ]
+    },
+    "update": {
+        "route": "/chats/$chatId",
+        "method": "PUT",
+        "sql": "UPDATE chats SET vinculoId = $vinculoId, conversacionId = $conversacionId WHERE chatId = $chatId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'chats' by its primary key",
+        "request_body_params": [
+            "vinculoId",
+            "conversacionId"
+        ]
+    },
+    "delete": {
+        "route": "/chats/$chatId",
+        "method": "DELETE",
+        "sql": "DELETE FROM chats WHERE chatId = $chatId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'chats' by its primary key"
+    }
+}

@@ -1,0 +1,4 @@
+Class Empresa <<Entidad>>{
+    url
+    tipoEmpresa
+}

@@ -1,0 +1,5 @@
+Class Comentario <<Entidad>>{
+    nombreUsuario
+    texto
+    fecha
+}

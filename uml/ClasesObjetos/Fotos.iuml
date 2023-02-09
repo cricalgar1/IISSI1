@@ -1,0 +1,53 @@
+class "f1: Foto" {
+    url = 'www.iissi-friends.com/foto5'
+    nombre = 'foto5'
+    descripcion = 'sorpresa'
+    numLike = 1
+    fecha`Publicacion = 2019-09-21
+    tema = 'diversión'
+}
+
+class "f2: Foto" {
+    url = 'www.iissi-friends.com/foto6'
+    nombre = 'foto6'
+    descripcion = 'Amazon Prime Video'
+    numLike = 1
+    fechaPublicacion = 2021-12-20
+    tema = 'cine'
+}
+
+class "f3: Foto" {
+    url = 'www.iissi-friends.com/foto9'
+    nombre ='foto9'
+    descripcion = 'feliz cumpleaños para mi!'
+    numLike = 1
+    fechaPublicacion= 2021-4-15
+    tema = 'fiesta'
+}
+
+class "f4: Foto" {
+    url = 'www.iissi-friends.com/foto10'
+    nombre ='foto10'
+    descripcion = 'netflix&chill'
+    numLike = 1
+    fechaPublicacion = 2021-10-23
+    tema = 'chill'
+}
+
+class "f5: Foto" {
+    url = 'www.iissi-friends.com/foto11'
+    nombre = 'foto11'
+    descripcion = 'entrenando'
+    numLike = 0
+    fechaPublicacion = 2021-12-01
+    tema = 'deporte'
+}
+
+class "f6: Foto" {
+    url = 'www.iissi-friends.com/foto12'
+    nombre = 'foto12'
+    descripcion = 'Con mis amigas'
+    numLike = 1
+    fechaPublicacion = 2020-09-12
+    tema = 'naturaleza'
+}

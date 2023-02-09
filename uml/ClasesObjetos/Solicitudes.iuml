@@ -1,0 +1,20 @@
+class "s1: Solicitud" {
+    emisorActivo = True
+    receptorActivo = True
+    fechaSolicitud = "25/10/2021"
+    fechaAceptacion = "26/10/2021"
+}
+
+class "s2: Solicitud" {
+    emisorActivo = True
+    receptorActivo = True
+    fechaSolicitud = "30/10/2021"
+    fechaAceptacion = "30/10/2021"
+}
+
+class "s3: Solicitud" {
+    emisorActivo = True
+    receptorActivo = True
+    fechaSolicitud = "25/10/2021"
+    fechaAceptacion = null
+}

@@ -1,0 +1,14 @@
+@startuml
+
+title Objetivo 2
+
+!include Clases/Usuario.iuml
+!include Enumerados/Genero.iuml
+!include Enumerados/ColorOjo.iuml
+!include Enumerados/ColorPelo.iuml
+!include Clases/Vinculo.iuml
+!include style-md.iuml
+
+Usuario *--"*" Vinculo: emisor, receptor
+
+@enduml

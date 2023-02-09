@@ -1,0 +1,7 @@
+Class Mensaje <<Entidad>>{
+    texto
+    fechaMensje
+    horaMensaje
+    horaRecibido
+    horaLeido
+}

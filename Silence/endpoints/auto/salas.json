@@ -1,0 +1,60 @@
+{
+    "getAll": {
+        "route": "/salas",
+        "method": "GET",
+        "sql": "SELECT * FROM salas",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all salas"
+    },
+    "getById": {
+        "route": "/salas/$salaId",
+        "method": "GET",
+        "sql": "SELECT * FROM salas WHERE salaId = $salaId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'salas' by its primary key"
+    },
+    "create": {
+        "route": "/salas",
+        "method": "POST",
+        "sql": "INSERT INTO salas(grupoId, conversacionId) VALUES ($grupoId, $conversacionId)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'salas'",
+        "request_body_params": [
+            "grupoId",
+            "conversacionId"
+        ]
+    },
+    "update": {
+        "route": "/salas/$salaId",
+        "method": "PUT",
+        "sql": "UPDATE salas SET grupoId = $grupoId, conversacionId = $conversacionId WHERE salaId = $salaId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'salas' by its primary key",
+        "request_body_params": [
+            "grupoId",
+            "conversacionId"
+        ]
+    },
+    "delete": {
+        "route": "/salas/$salaId",
+        "method": "DELETE",
+        "sql": "DELETE FROM salas WHERE salaId = $salaId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'salas' by its primary key"
+    }
+}

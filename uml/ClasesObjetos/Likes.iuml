@@ -1,0 +1,25 @@
+class "l1: Like"{
+    emisor = 'man-olo'
+    fechaLike = 2019-10-13
+
+}
+class "l2: Like"{
+    emisor = 'luciaR'
+    fechaLike = 2021-12-30
+}
+
+class "l3: Like"{
+    emisor = 'Martita3'
+    fechaLike = 2021-5-1
+}
+
+class "l4: Like"{
+    emisor = 'Jimmy'
+    fechaLike = 2021-11-4
+}
+
+class "l5: Like"{
+    emisor = 'Xx_Alberto69_xX'
+    fechaLike = 2021-12-29
+}
+

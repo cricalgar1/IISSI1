@@ -1,0 +1,26 @@
+class "p1: Persona" {
+    fechaNacimiento = 20/03/1986
+    altura = 190
+    peso = 84.5
+    genero = "masculino"
+    colorPelo = "rubio"
+    colorOjo = "verde"
+}
+
+class "p2: Persona" {
+    fechaNacimiento = 02/11/1990
+    altura = 159
+    peso = 55.3
+    genero = "femenino"
+    colorPelo = "gris"
+    colorOjo = "gris"
+}
+
+class "p3: Persona" {
+    fechaNacimiento = 18/07/1999
+    altura = 163
+    peso = 67.5
+    genero = "femenino"
+    colorPelo = "rubio"
+    colorOjo = "azul"
+}

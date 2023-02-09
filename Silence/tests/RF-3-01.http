@@ -1,0 +1,135 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+# @name register
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "daniel@gmail.com",
+	"PASSWORD":"1234",
+	"nombre": "daniel",
+	"fechaAlta": "2020-05-05",
+	"fechaBaja": null,
+	"biografia": "hola",
+	"direccion": "Calle falsa 123",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+### Hacer login como Solicitante, sin ficha de preferencia ni aficiones vinculadas. (OK)
+# @name login
+POST {{BASE}}/login
+Content-Type: application/json
+
+{
+    "email": "daniel@gmail.com",
+    "password": "1234"
+}
+###
+@token = {{login.response.body.sessionToken}}
+###
+@idUsuario = {{login.response.body.user.usuarioId}}
+
+### Grabar una ficha de preferencias y asignar algunas aficiones(OK)
+POST {{BASE}}/fichapreferencias 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"usuarioId": {{idUsuario}},
+	"rangoEdad": 25,
+	"rangoEstatura": 180,
+	"rangoPeso": 75,
+	"filtroGenero": "Masculino",
+	"filtroOjo": "Azul",
+	"filtroColorPelo": "Negro",
+	"ubicacion": "Provincia"
+}
+
+###
+# @name fichapreferencias
+GET {{BASE}}/fichapreferencias
+
+### fichaPreferenciaId de la fila de la posición 5
+@ficId = {{fichapreferencias.response.body.5.fichaPreferenciaId}} 
+
+###
+POST {{BASE}}/fichapreferenciaaficiones 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"fichaPreferenciaid": {{ficId}},
+	"aficionId": 1
+}
+
+###
+POST {{BASE}}/fichapreferenciaaficiones 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"fichaPreferenciaid": {{ficId}},
+	"aficionId": 2
+}
+
+### Modificar la ficha de preferencias y aficiones vinculadas (OK)
+PUT {{BASE}}/fichapreferencias/{{ficId}} 
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "usuarioId": 6,
+    "rangoEdad": 30,
+    "rangoEstatura": 175,
+    "rangoPeso": 65,
+    "filtroGenero": "Masculino",
+    "filtroOjo": "Azul",
+    "filtroColorPelo": "Blanco",
+    "ubicacion": "Provincia"
+}
+
+###
+# @name fichapreferenciaaficiones
+GET {{BASE}}/fichapreferenciaaficiones
+
+###
+@ficAfId = {{fichapreferenciaaficiones.response.body.6.fichaPreferenciaAficionId}} 
+PUT {{BASE}}/fichapreferenciaaficiones/{{ficAfId}} 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"fichaPreferenciaid": {{ficId}},
+	"aficionId": 4
+}
+
+### Borrar la ficha de un usuario que no tiene aficiones vinculadas (OK)
+DELETE {{BASE}}/fichapreferencias/4
+Token: {{token}}
+
+### Borrar un usuario con ficha de preferencia (ERROR)
+DELETE {{BASE}}/usuarios/1
+Token: {{token}}
+
+### Grabar una ficha con valor de estatura negativo (ERROR)
+POST {{BASE}}/fichapreferencias 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"usuarioId": {{idUsuario}},
+	"rangoEdad": 25,
+	"rangoEstatura": -50,
+	"rangoPeso": 75,
+	"filtroGenero": "Masculino",
+	"filtroOjo": "Azul",
+	"filtroColorPelo": "Negro",
+	"ubicacion": "Provincia"
+}
+
+### Borrar la ficha de preferencia de un usuario que tiene aficiones vinculadas (ERROR)
+DELETE {{BASE}}/fichapreferencias/1
+Token: {{token}}
+###
+GET {{BASE}}/fichapreferencias

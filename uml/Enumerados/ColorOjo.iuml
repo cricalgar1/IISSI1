@@ -1,0 +1,7 @@
+Class ColorOjo <<Enumerado>>{
+    negro
+    castaño
+    azul
+    verde
+    gris
+}

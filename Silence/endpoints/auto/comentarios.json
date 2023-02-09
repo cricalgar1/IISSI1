@@ -1,0 +1,64 @@
+{
+    "getAll": {
+        "route": "/comentarios",
+        "method": "GET",
+        "sql": "SELECT * FROM comentarios",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all comentarios"
+    },
+    "getById": {
+        "route": "/comentarios/$comentarioId",
+        "method": "GET",
+        "sql": "SELECT * FROM comentarios WHERE comentarioId = $comentarioId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'comentarios' by its primary key"
+    },
+    "create": {
+        "route": "/comentarios",
+        "method": "POST",
+        "sql": "INSERT INTO comentarios(usuarioId, fotoId, texto, fecha) VALUES ($usuarioId, $fotoId, $texto, $fecha)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'comentarios'",
+        "request_body_params": [
+            "usuarioId",
+            "fotoId",
+            "texto",
+            "fecha"
+        ]
+    },
+    "update": {
+        "route": "/comentarios/$comentarioId",
+        "method": "PUT",
+        "sql": "UPDATE comentarios SET usuarioId = $usuarioId, fotoId = $fotoId, texto = $texto, fecha = $fecha WHERE comentarioId = $comentarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'comentarios' by its primary key",
+        "request_body_params": [
+            "usuarioId",
+            "fotoId",
+            "texto",
+            "fecha"
+        ]
+    },
+    "delete": {
+        "route": "/comentarios/$comentarioId",
+        "method": "DELETE",
+        "sql": "DELETE FROM comentarios WHERE comentarioId = $comentarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'comentarios' by its primary key"
+    }
+}

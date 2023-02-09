@@ -1,0 +1,19 @@
+class "a1: Aficion"{
+    nombre = "Deporte"
+}
+
+class "a2: Aficion"{
+    nombre = "Cine"
+}
+
+class "a3: Aficion"{
+    nombre = "Surfear"
+}
+
+class "a4: Aficion" {
+    nombre = "Pintura"
+}
+
+class "a5: Aficion" {
+    nombre = "Musica"
+}

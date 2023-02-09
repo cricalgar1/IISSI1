@@ -1,0 +1,108 @@
+@startuml
+title Objetivo Final
+
+!include Clases/Usuario.iuml
+!include Enumerados/Genero.iuml
+!include Clases/Foto.iuml
+!include Clases/Aficion.iuml
+!include Enumerados/ColorOjo.iuml
+!include Enumerados/ColorPelo.iuml
+!include Clases/Like.iuml
+!include Clases/Comentario.iuml
+!include Enumerados/TipoEmpresa.iuml
+!include Enumerados/Tema.iuml
+!include Clases/Grupo.iuml
+!include Clases/Empresa.iuml
+!include Clases/Persona.iuml
+!include style-md.iuml
+
+!include Clases/Vinculo.iuml
+
+!include Clases/FichaPreferencia.iuml
+!include Enumerados/Ubicacion.iuml
+
+!include Clases/Conversacion.iuml
+!include Clases/Mensaje.iuml
+
+!include Clases/Chat.iuml
+!include Clases/SalaDeChat.iuml
+
+/'Asociaciones para el objetivo 1'/
+Usuario "*"--"0..10" Foto : sube
+Usuario <|-l- (Empresa, Persona) : {completa, disjunta}
+Foto "1"--"*" Like: tiene
+Persona "3..10"--"*" Grupo: pertenece a
+Foto "1"--"*" Comentario: tiene
+Usuario"1"--"*" Comentario: tiene
+
+/'Notas para el objetivo 1'/
+note as n1
+ //<b>RN-1-00a:</b> Datos obligatorios//
+ Todos los datos, excepto la fecha de baja, son obligatorios. 
+ Una fecha de baja nula representa a un usuario activo,
+ y viceversa a un usuario que se ha dado de baja lógicamente.
+
+ //<b>RN-1-01:</b> Usuarios mayores de edad//
+ Todos los usuarios registrados deben ser mayores de edad
+ (18 años cumplidos) en el instante del alta en la red.
+
+ //<b>RN-1-02:</b> Email único como identificador de usuario//
+ El email de un usuario es único en el sistema. 
+ Sirve como identificador de usuario.
+end note
+n1 .. Usuario
+
+/'
+note as n2
+ //<b>RN-1-04:</b> Máximo fotos usuario//
+ num_fotos <= 10
+end note
+n2 . Foto
+'/
+
+note as n7
+ //<b>RF-1-04:</b> Gestión de comentarios//
+ Que los usuarios puedan incluir y eliminar
+  comentarios realizados en fotos.
+end note
+n7 .. Comentario
+
+/'Asociaciones para el objetivo 2'/
+
+/'Notas para el objetivo 2'/
+
+/'Asociaciones para el objetivo 3'/
+Usuario "*"--"1" FichaPreferencia
+Persona "*"--"*" Aficion: tiene
+FichaPreferencia "*"--"*" Aficion
+
+/'Notas para el objetivo 3'/
+note as n5
+ //<b>RN-3-02b:</b> Autoexclusión en vínculos de amistad//
+ Que un vínculo siempre se establezca entre dos usuarios distintos
+end note
+n5 -. Vinculo
+n5 -. Usuario
+
+
+/'Asociaciones para el objetivo 4'/
+Conversacion <|-l- (SalaDeChat, Chat) : {completa, disjunta}
+Conversacion *--"*" Mensaje : compuesta de
+Usuario "2"--"*" Vinculo: tienen
+Chat *--"1" Vinculo: necesita
+SalaDeChat *--"1" Grupo: esta en
+
+/'Notas para el objetivo 4'/
+note as n6
+ //<b>RN-4-01:</b> Fechas consistentes de Conversación//
+ Conversacion.fechaFin > Conversacion.fechaInicio
+
+//<b>RN-4-02:</b> Conversaciones admitidas solo para vínculos activos//
+ Que una conversación solo pueda crearse bajo un vínculo
+  de amistad activo. En caso contrario, ni se muestra la opción ni 
+  podrá definirse en el sistema.
+end note  
+n6 . Conversacion
+
+
+@enduml

@@ -1,0 +1,19 @@
+Class Tema <<Enumerado>>{
+    naturaleza
+    arte
+    deporte
+    comida
+    baile
+    fiesta
+    chill
+    navidad
+    lluvia
+    nieve
+    verano
+    amor
+    diversión
+    gaming
+    cine
+    moda
+    saludable
+}

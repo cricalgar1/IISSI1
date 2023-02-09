@@ -1,0 +1,32 @@
+@startuml
+
+title Diagrama de objetos - Objetivo 1
+
+!include style-md.iuml
+!include ClasesObjetos/Personas.iuml
+!include ClasesObjetos/Fotos.iuml
+!include ClasesObjetos/Comentarios.iuml
+!include ClasesObjetos/Likes.iuml
+!include ClasesObjetos/Aficiones.iuml
+!include ClasesObjetos/Empresas.iuml
+
+"p1: Persona" -- "a3: Aficion" : tiene
+
+"p1: Persona" -- "f3: Foto" : sube 
+"p2: Persona" -- "f4: Foto" : sube 
+"p2: Persona" -- "f5: Foto" : sube 
+
+"e1: Empresa" -- "f1: Foto" : sube
+"e1: Empresa" -- "f2: Foto" : sube
+
+"f2: Foto" -- "c1: Comentario" : tiene
+
+"f1: Foto" -- "l1: Like" : tiene
+"f2: Foto" -- "l2: Like" : tiene
+"f3: Foto" -- "l3: Like" : tiene
+"f4: Foto" -- "l4: Like" : tiene
+"f6: Foto" -- "l5: Like" : tiene
+
+
+
+@enduml

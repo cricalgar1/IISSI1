@@ -1,0 +1,12 @@
+@startuml
+
+title Diagrama de Objetos - Objetivo 3
+
+!include style-md.iuml
+!include ClasesObjetos/Personas.iuml
+!include ClasesObjetos/Aficiones.iuml
+!include ClasesObjetos/FichasPreferencias.iuml
+
+"p1: Persona" -- "a3: Aficion" : tiene
+
+@enduml

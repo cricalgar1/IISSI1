@@ -1,0 +1,5 @@
+Class Genero <<Enumerado>>{
+    masculino
+    femenino
+    otros
+}

@@ -1,0 +1,31 @@
+class "m1: Mensaje" {
+    texto = '¿has visto la nueva peli de Spiderman'
+    fechaMensje = '2021-08-23'
+    horaMensaje = '23:12:31'
+    horaRecibido = '23:13:32'
+    horaLeido = '12:06:45'
+}
+
+class "m2: Mensaje" {
+    texto = 'si es increible!!!'
+    fechaMensje = '2021-08-24'
+    horaMensaje = '12:10:21'
+    horaRecibido = '12:10:55'
+    horaLeido = '14:58:12'
+}
+
+class "m3: Mensaje" {
+    texto = 'como estas?'
+    fechaMensje = '2021-10-13'
+    horaMensaje = '12:16:15'
+    horaRecibido = '12:16:20'
+    horaLeido = '12:34:00'
+}
+
+class "m4: Mensaje" {
+    texto = 'bien'
+    fechaMensje = '2021-10-13'
+    horaMensaje = '13:04:10'
+    horaRecibido = '13:04:20'
+    horaLeido = '14:50:09'
+}

@@ -1,0 +1,6 @@
+class Vinculo <<Entidad>>{
+    activo
+    fecha
+    fechaAceptacion[0..1]
+    fechaRevocacion[0..1]
+}

@@ -1,0 +1,4 @@
+Class Conversacion<<Entidad>>{
+    fechaInicio
+    fechaFin[0..1]
+}

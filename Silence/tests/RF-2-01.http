@@ -1,0 +1,311 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+POST {{BASE}}/register
+Content-Type: application/json
+
+{
+    "email": "cris@gmail.com",
+    "password": "cris123",
+    "nombre": "cristina",
+    "fechaAlta": "2015/03/15",
+    "fechaBaja": null,
+    "biografia": "hola",
+    "direccion": "cualquiera",
+    "seguidores": 0,
+    "numPublicacion": 2
+}
+
+###
+
+POST {{BASE}}/register
+Content-Type: application/json
+
+{
+    "email": "marina@gmail.com",
+    "password": "marina1234",
+    "nombre": "marina",
+    "fechaAlta": "2021/03/24",
+    "fechaBaja": null,
+    "biografia": "que tal",
+    "direccion": "una",
+    "seguidores": 1,
+    "numPublicacion": 1
+}
+
+###
+
+#Hacer login como solicitante (OK)
+
+# @name login
+
+POST {{BASE}}/login
+Content-Type: application/json
+
+{
+    "email": "cris@gmail.com",
+    "password": "cris123"
+}
+
+
+###
+
+#Registrar varias solicitudes de vínculos de
+#    amistad (hasta 5) a usuarios potenciales  (OK)
+
+
+#Realizar una solicitud
+POST {{BASE}}/vinculos
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 0,
+    "fecha": "2021/09/26",
+    "fechaAceptacion": null,
+    "fechaRevocacion": null
+}
+
+###
+
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "vinculoId": 18,
+    "emisorId": 15,
+    "receptorId": 14
+}
+
+###
+
+POST {{BASE}}/vinculos
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 0,
+    "fecha": "2021/09/26",
+    "fechaAceptacion": null,
+    "fechaRevocacion": null
+}
+
+###
+
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "vinculoId": 19,
+    "emisorId": 15,
+    "receptorId": 8
+}
+
+###
+
+POST {{BASE}}/vinculos
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 0,
+    "fecha": "2021/09/26",
+    "fechaAceptacion": null,
+    "fechaRevocacion": null
+}
+
+###
+
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "vinculoId": 20,
+    "emisorId": 15,
+    "receptorId": 9
+}
+
+###
+
+POST {{BASE}}/vinculos
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 0,
+    "fecha": "2021/09/26",
+    "fechaAceptacion": null,
+    "fechaRevocacion": null
+}
+
+###
+
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "vinculoId": 21,
+    "emisorId": 15,
+    "receptorId": 10
+}
+
+###
+
+POST {{BASE}}/vinculos
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 0,
+    "fecha": "2021/09/26",
+    "fechaAceptacion": null,
+    "fechaRevocacion": null
+}
+
+###
+
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "vinculoId": 22,
+    "emisorId": 15,
+    "receptorId": 1
+}
+
+###
+
+#Verificar que sólo hay un vínculo activo con otro usuario (OK)
+GET {{BASE}}/vinculosusuarios?receptorId=15
+
+
+###
+
+#Hacer login como Aceptantes, aceptando alguna solicitud de amistad. (OK)
+# @name login
+
+POST {{BASE}}/login
+Content-Type: application/json
+
+{
+    "email": "nosoynadie@gmail.com",
+    "password": "nadie"
+}
+
+###
+
+#Aceptar solicitud  (OK)
+PUT  {{BASE}}/vinculos/19
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 1,
+    "fecha": "2021/09/26",
+    "fechaAceptacion": "2021/09/27",
+    "fechaRevocacion": null   
+}
+
+###
+
+#Revocar vinculo como aceptante (OK)
+
+PUT {{BASE}}/vinculos/19
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 0,
+    "fecha": "2021/09/25",
+    "fechaAceptacion": "2021/09/27",
+    "fechaRevocacion": "2021/10/23"
+}
+
+###
+
+#Volver a entrar como Solicitante y revocar una solicitud (OK)
+
+# @name login
+
+POST {{BASE}}/login
+Content-Type: application/json
+
+{
+    "email": "cris@gmail.com",
+    "password": "cris123"
+}
+
+###
+
+# Revocar solicitud como solicitante (OK)
+
+
+###
+
+PUT {{BASE}}/vinculos/20
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 0,
+    "fecha": "2021/09/26",
+    "fechaAceptacion": null,
+    "fechaRevocacion": "2021/09/27"
+}
+
+
+###
+#Como Solicitante que ha registrado cinco vínculos en un día, registrar el sexto (ERROR)
+POST {{BASE}}/vinculos
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "activo": 0,
+    "fecha": "2021/09/26",
+    "fechaAceptacion": null,
+    "fechaRevocacion": null
+}
+
+###
+
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "vinculoId": 23,
+    "emisorId": 15,
+    "receptorId": 5
+}
+
+###
+#Como Solicitante con un vínculo activo con otro usuario, intentar generar un segundo vínculo (ERROR)
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "vinculoId": 21,
+    "emisorId": 15,
+    "receptorId": 13
+}
+
+
+
+###
+
+#Que un usuario proponga un vínculo de amistad con él mismo (ERROR)
+POST {{BASE}}/vinculosusuarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "vinculoId": 22,
+    "emisorId": 15,
+    "receptorId": 15
+}

@@ -1,0 +1,64 @@
+{
+    "getAll": {
+        "route": "/grupos",
+        "method": "GET",
+        "sql": "SELECT * FROM grupos",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all grupos"
+    },
+    "getById": {
+        "route": "/grupos/$grupoId",
+        "method": "GET",
+        "sql": "SELECT * FROM grupos WHERE grupoId = $grupoId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'grupos' by its primary key"
+    },
+    "create": {
+        "route": "/grupos",
+        "method": "POST",
+        "sql": "INSERT INTO grupos(nombreGrupo, fechaCreacion, numParticipante, creador) VALUES ($nombreGrupo, $fechaCreacion, $numParticipante, $creador)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'grupos'",
+        "request_body_params": [
+            "nombreGrupo",
+            "fechaCreacion",
+            "numParticipante",
+            "creador"
+        ]
+    },
+    "update": {
+        "route": "/grupos/$grupoId",
+        "method": "PUT",
+        "sql": "UPDATE grupos SET nombreGrupo = $nombreGrupo, fechaCreacion = $fechaCreacion, numParticipante = $numParticipante, creador = $creador WHERE grupoId = $grupoId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'grupos' by its primary key",
+        "request_body_params": [
+            "nombreGrupo",
+            "fechaCreacion",
+            "numParticipante",
+            "creador"
+        ]
+    },
+    "delete": {
+        "route": "/grupos/$grupoId",
+        "method": "DELETE",
+        "sql": "DELETE FROM grupos WHERE grupoId = $grupoId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'grupos' by its primary key"
+    }
+}

@@ -1,0 +1,13 @@
+class "v1: Vinculo" {
+    activo = True
+    fecha = '2021-02-15'
+    fechaAceptacion = '2021-02-16'
+    fechaRevocacion = null
+}
+
+class "v2: Vinculo" {
+    activo = True
+    fecha = '2021-06-19'
+    fechaAceptacion = '2021-06-19'
+    fechaRevocacion = null
+}

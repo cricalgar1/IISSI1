@@ -1,0 +1,9 @@
+class "f1: FichaPreferencia"{
+    rangoEdad = "18-22"
+    rangoEstatura = "170-200"
+    rangoPeso = "60-85"
+    filtroGenero = "masculino"
+    filtroOjo = "castaño"
+    filtroPelo = "rojo"
+    ubicacion = "Sevilla"
+}

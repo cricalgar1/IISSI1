@@ -1,0 +1,6 @@
+class "g1: Grupo" {
+    nombreGrupo = 'Grupo verde'
+    fechaCreacion = '2020-05-03'
+    numeroParticipantes = 3
+    creador = 'Jimena'
+}

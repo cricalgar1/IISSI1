@@ -1,0 +1,60 @@
+{
+    "getAll": {
+        "route": "/personasgrupos",
+        "method": "GET",
+        "sql": "SELECT * FROM personasgrupos",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all personasgrupos"
+    },
+    "getById": {
+        "route": "/personasgrupos/$personaGrupoId",
+        "method": "GET",
+        "sql": "SELECT * FROM personasgrupos WHERE personaGrupoId = $personaGrupoId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'personasgrupos' by its primary key"
+    },
+    "create": {
+        "route": "/personasgrupos",
+        "method": "POST",
+        "sql": "INSERT INTO personasgrupos(grupoId, personaId) VALUES ($grupoId, $personaId)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'personasgrupos'",
+        "request_body_params": [
+            "grupoId",
+            "personaId"
+        ]
+    },
+    "update": {
+        "route": "/personasgrupos/$personaGrupoId",
+        "method": "PUT",
+        "sql": "UPDATE personasgrupos SET grupoId = $grupoId, personaId = $personaId WHERE personaGrupoId = $personaGrupoId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'personasgrupos' by its primary key",
+        "request_body_params": [
+            "grupoId",
+            "personaId"
+        ]
+    },
+    "delete": {
+        "route": "/personasgrupos/$personaGrupoId",
+        "method": "DELETE",
+        "sql": "DELETE FROM personasgrupos WHERE personaGrupoId = $personaGrupoId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'personasgrupos' by its primary key"
+    }
+}

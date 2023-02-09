@@ -1,0 +1,17 @@
+@startuml
+
+title Diagrama de objetos - Objetivo 2
+
+!include style-md.iuml
+!include  ClasesObjetos/Usuarios.iuml
+!include  ClasesObjetos/Vinculos.iuml
+
+
+"u1: Usuario" -- "u2: Usuario" : establecen amistad
+"(u1: Usuario, u2: Usuario)" .. "v1: Vinculo" 
+
+"u2: Usuario" -- "u3: Usuario": establecen amistad
+"(u2: Usuario, u3: Usuario)" .. "v2: Vinculo" 
+
+@enduml
+

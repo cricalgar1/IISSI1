@@ -1,0 +1,68 @@
+{
+    "getAll": {
+        "route": "/personas",
+        "method": "GET",
+        "sql": "SELECT * FROM personas",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all personas"
+    },
+    "getById": {
+        "route": "/personas/$usuarioId",
+        "method": "GET",
+        "sql": "SELECT * FROM personas WHERE usuarioId = $usuarioId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'personas' by its primary key"
+    },
+    "create": {
+        "route": "/personas",
+        "method": "POST",
+        "sql": "INSERT INTO personas(fechaNacimiento, altura, peso, genero, colorOjos, colorPelo) VALUES ($fechaNacimiento, $altura, $peso, $genero, $colorOjos, $colorPelo)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'personas'",
+        "request_body_params": [
+            "fechaNacimiento",
+            "altura",
+            "peso",
+            "genero",
+            "colorOjos",
+            "colorPelo"
+        ]
+    },
+    "update": {
+        "route": "/personas/$usuarioId",
+        "method": "PUT",
+        "sql": "UPDATE personas SET fechaNacimiento = $fechaNacimiento, altura = $altura, peso = $peso, genero = $genero, colorOjos = $colorOjos, colorPelo = $colorPelo WHERE usuarioId = $usuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'personas' by its primary key",
+        "request_body_params": [
+            "fechaNacimiento",
+            "altura",
+            "peso",
+            "genero",
+            "colorOjos",
+            "colorPelo"
+        ]
+    },
+    "delete": {
+        "route": "/personas/$usuarioId",
+        "method": "DELETE",
+        "sql": "DELETE FROM personas WHERE usuarioId = $usuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'personas' by its primary key"
+    }
+}

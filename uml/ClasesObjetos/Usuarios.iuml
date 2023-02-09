@@ -1,0 +1,47 @@
+class "u1: Usuario" {
+    email = 'albertomartinez@gmail.com'
+    password = 'alberto789'
+    nombre = 'Xx_Alberto69_xX'
+    fechaAlta = '2019-04-20'
+    fechaBaja = null
+    biografia = 'futbolista'
+    direccion = 'Alicante, Avenida de Orihuela 5 3ªA'
+    seguidores = 2
+    numPublicacion = 1
+}
+
+class "u2: Usuario" {
+    email = 'martagomez@gmail.com'
+    password = 'marta1234'
+    nombre = 'Martita3'
+    fechaAlta = '2021-11-02'
+    fechaBaja = null
+    biografia = 'Profesora'
+    direccion = 'Sevilla, Calle San Luis, 25, 1ªB'
+    seguidores = 1
+    numPublicacion = 2
+}
+
+class "u3: Usuario" {
+    email = 'jimenagarcia@gmail.com'
+    password = '7777hola'
+    nombre = 'Jimmy'
+    fechaAlta = '2020-7-18'
+    fechaBaja = null
+    biografia = 'Mi gato se llama Misi'
+    direccion = 'Avenida Platero, 45, 5ºC'
+    seguidores = 1
+    numPublicacion = 1
+}
+
+class "u4: Usuario"{
+    email = 'amazon@gmail.com'
+    password = 'amazon345'
+    nombre = 'Amazon'
+    fechaAlta = '2018-02-07'
+    fehcaBaja = null
+    biografía = 'vendemos cosas'
+    direccion = 'Sevilla, C/ Perez Hernandez 1 2ºA'
+    seguidores = 3
+    numPublicacion = 2
+}

@@ -1,0 +1,32 @@
+!include style-md.iuml
+!include ClasesObjetos/Usuarios.iuml
+!include ClasesObjetos/Vinculos.iuml
+!include ClasesObjetos/Personas.iuml
+!include ClasesObjetos/Grupos.iuml
+!include ClasesObjetos/Conversaciones.iuml
+!include ClasesObjetos/Mensajes.iuml
+!include ClasesObjetos/SalasDeChats.iuml
+!include ClasesObjetos/Chats.iuml
+
+"u1: Usuario" -- "p1: Persona"
+"u2: Usuario" -- "p2: Persona"
+"u3: Usuario" -- "p3: Persona" 
+
+"u1: Usuario" -- "v1: Vinculo"
+"u2: Usuario" -- "v1: Vinculo"
+
+"u2: Usuario" -- "v2: Vinculo" : comprueba vinculo
+"u3: Usuario" -- "v2: Vinculo" : comprueba vinculo
+"v2: Vinculo" -- "ch1: Chat" : se crea
+"ch1: Chat" -- "c2: Conversacion" : existedd
+"c2: Conversacion" -- "m3: Mensaje" : contiene
+"c2: Conversacion" -- "m4: Mensaje" : contiene
+
+
+"p1: Persona" -- "g1: Grupo" : pertenece a
+"p2: Persona" -- "g1: Grupo" : pertenece a
+"p3: Persona" -- "g1: Grupo" : pertenece a
+"g1: Grupo" -- "s1: SalaDeChat" : se crea
+"s1: SalaDeChat" -- "c1: Conversacion" : existe
+"c1: Conversacion" -- "m1: Mensaje" : contiene
+"c1: Conversacion" -- "m2: Mensaje" : contiene

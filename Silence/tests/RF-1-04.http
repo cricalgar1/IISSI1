@@ -1,0 +1,68 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+POST {{BASE}}/register
+Content-Type: application/json
+
+{
+    "email": "cris@gmail.com",
+    "password": "cris123",
+    "nombre": "cristina",
+    "fechaAlta": "2015/03/15",
+    "fechaBaja": null,
+    "biografia": "hola",
+    "direccion": "cualquiera",
+    "seguidores": 0,
+    "numPublicacion": 2
+}
+
+###
+
+#Hacer login como solicitante (OK)
+
+# @name login
+
+POST {{BASE}}/login
+Content-Type: application/json
+
+{
+    "email": "cris@gmail.com",
+    "password": "cris123"
+}
+
+###
+@idUsuario = {{login.response.body.user.usuarioId}}
+
+###
+#Incluir un comentario (OK)
+POST {{BASE}}/comentarios
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "usuarioId": {{idUsuario}},
+    "fotoId": 1,
+    "texto": "¡Qué guay!",
+    "fecha": "2021/05/16"
+}
+
+###
+
+#Modificar un comentario (OK)
+
+PUT {{BASE}}/comentarios/4
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "usuarioId": {{idUsuario}},
+    "fotoId": 1,
+    "texto": "Bonito día",
+    "fecha": "2021/05/18"
+}
+
+###
+
+#Eliminar un comentario (OK)
+
+DELETE {{BASE}}/comentarios/4
+Token: {{login.response.body.sessionToken}}

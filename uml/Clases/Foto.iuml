@@ -1,0 +1,8 @@
+class Foto <<Entidad>> {
+    url
+    nombre 
+    descripcion
+    numLike
+    fechaPublicacion
+    tema
+}

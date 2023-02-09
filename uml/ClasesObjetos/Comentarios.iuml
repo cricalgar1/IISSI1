@@ -1,0 +1,5 @@
+class "c1: Comentario"{
+    nombreUsuario = 'luciaR'
+    texto = 'Yo soy más de Netflix'
+    fecha =  2021-12-21
+}

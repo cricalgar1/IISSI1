@@ -1,0 +1,8 @@
+class Persona <<Entidad>>{
+    fechaNacimiento
+    estatura
+    peso
+    genero
+    colorPelo
+    colorOjos
+}

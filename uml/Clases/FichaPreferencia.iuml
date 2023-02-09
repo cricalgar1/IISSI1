@@ -1,0 +1,9 @@
+class FichaPreferencia <<Entidad>>{
+    rangoEdad
+    rangoEstatura
+    rangoPeso
+    filtroGenero
+    filtroOjo
+    filtroPelo
+    ubicacion
+}

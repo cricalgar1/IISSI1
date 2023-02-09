@@ -1,0 +1,175 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+###
+
+POST {{BASE}}/register
+Content-Type: application/json
+
+{ 
+	"email": "javi@gmail.com",
+	"PASSWORD": "hola",
+	"nombre": "si",
+	"fechaAlta": "2021-10-12",
+	"fechaBaja": null,
+	"biografia": "uwu",
+	"direccion": "owo",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###
+
+#Hacer login (OK)
+# @name login
+
+POST {{BASE}}/login 
+Content-Type: application/json
+
+{
+    "email": "javi@gmail.com",
+    "password": "hola"
+
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+###
+
+#Consultar vínculos de amistad activos (OK)
+GET {{BASE}}/vinculos
+
+
+###
+
+
+#Iniciar conversacion con un usuario sin vinculo activo (ERROR)
+POST {{BASE}}/vinculos 
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"activo": 0,
+	"fecha": "2021-12-03",
+	"fechaAceptacion": "2021-12-04",
+	"fechaRevocacion": null
+}
+
+
+###
+
+POST {{BASE}}/conversaciones 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"fechaInicio": "2021-12-04",
+	"fechaFin": null
+} 
+
+###
+
+POST {{BASE}}/chats 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"vinculoId": 25,
+	"conversacionId": 10
+} 
+
+###
+
+#Iniciar conversacion con un usuario con un vinculo activo (OK)
+PUT {{BASE}}/vinculos/25
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"activo": 1,
+	"fecha": "2021-12-03",
+	"fechaAceptacion": "2021-12-04",
+	"fechaRevocacion": null
+}
+
+###
+
+POST {{BASE}}/chats 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"vinculoId": 25,
+	"conversacionId": 10
+} 
+
+###
+
+POST {{BASE}}/mensajes
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"conversacionId": 10,
+	"texto": "hey buenas",
+	"fechaMensaje": "2021-12-04",
+	"horaMensaje": "13:05:12",
+	"horaRecibido": "13:05:42",
+	"horaLeido": "13:06:00"
+} 
+
+###
+
+#Finalizar conversación activa con un contacto (OK)
+PUT {{BASE}}/conversaciones/10
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"fechaInicio": "2021-12-04",
+	"fechaFin": "2021-12-05"
+} 
+
+###
+
+#Verificar que no se puede volver a abrir una conversación cerrada,
+# pero si ver los mensajes (OK)
+POST {{BASE}}/mensajes
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"conversacionId": 10,
+	"texto": "Hola",
+	"fechaMensaje": "2021-12-06",
+	"horaMensaje": "12:05:12",
+	"horaRecibido": null,
+	"horaLeido": null
+} 
+
+###
+
+GET {{BASE}}//mensajes/21
+
+###
+
+#Iniciar una nueva conversación con un usuario con el que tuvimos ya una
+POST {{BASE}}/conversaciones 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"fechaInicio": "2021-12-06",
+	"fechaFin": null
+} 
+
+###
+
+POST {{BASE}}/chats 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"vinculoId": 25,
+	"conversacionId": 11
+} 

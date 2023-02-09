@@ -1,0 +1,79 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+# @name register
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "daniel@gmail.com",
+	"PASSWORD":"1234",
+	"nombre": "daniel",
+	"fechaAlta": "2020-05-05",
+	"fechaBaja": null,
+	"biografia": "hola",
+	"direccion": "Calle falsa 123",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+### Hacer login de un usuario activo existente, suministrando password correcta (OK)
+# @name login
+POST {{BASE}}/login
+Content-Type: application/json
+
+{
+    "email": "daniel@gmail.com",
+    "password": "1234"
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+### Obtener el nombre del usuario que tenga la foto con más likes del día anterior (OK)
+POST {{BASE}}/fotos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"usuarioId": 1,
+	"urlFoto": "https://www.iissi-friends.com/fotoPrueba",
+	"nombre": "Foto prueba",
+	"descripcion": "Probando el test",
+	"numLike": "1",
+	"fechaPublicacion": "2020-06-06",
+	"tema": "arte"
+} 
+###
+GET {{BASE}}/fotos
+
+###
+POST {{BASE}}/likes 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"fotoId": 14,
+	"emisorId": 1,
+	"fechaLike": "2022-01-06"
+} 
+
+###
+# @name likeDatos
+GET {{BASE}}/likes?fechaLike=2022-01-06&groupBy=fotoId&_sort=numLike&_order=desc&_limit=1
+
+###
+@fotoIdConMasLikes = {{likeDatos.response.body.0.fotoId}}
+
+###
+# @name fotoConMasLikes
+GET {{BASE}}/fotos/{{fotoIdConMasLikes}}
+
+###
+@usuarioId = {{fotoConMasLikes.response.body.0.usuarioId}}
+
+###
+# @name usuarioConLaFotoConMasLikes
+GET {{BASE}}/usuarios/{{usuarioId}}
+
+###
+@nombreUsuario = {{usuarioConLaFotoConMasLikes.response.body.0.nombre}}

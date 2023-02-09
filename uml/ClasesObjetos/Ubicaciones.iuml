@@ -1,0 +1,5 @@
+class "u1: Ubicacion"{
+    codigoPostal = "41018"
+    ciudad = "Sevilla"
+    provincia = "Sevilla"
+}

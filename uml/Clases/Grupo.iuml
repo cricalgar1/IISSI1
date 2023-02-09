@@ -1,0 +1,6 @@
+Class Grupo <<Entidad>>{
+    nombreGrupo
+    fechaCreacion
+    numParticipante
+    creador
+}

@@ -1,0 +1,8 @@
+class ColorPelo <<Enumerado>>{
+    negro
+    castaño
+    rubio
+    rojo
+    blanco
+    gris
+}

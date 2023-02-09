@@ -1,0 +1,150 @@
+
+### THIS IS AN AUTO-GENERATED TEST SUITE, IT NEEDS TO BE COMPLETED WITH VALID DATA
+### THESE ARE NOT ALL YOU NEED, MORE OF THEM MUST BE CREATED TO EVALUATE THE FUNCTIONAL
+### REQUIREMENTS OF THE PROJECT AT HAND, THESE TEST ONLY TEST THE CRUD PORTION OF THE ENTITY.
+### Silence is a DEAL research team project, more info about us in https://deal.us.es
+@BASE = http://127.0.0.1:8080/api/v1
+
+### Auxiliary query
+### Positive test
+### Test 00: Get all existing usuarios
+### This query is used in several of the below tests it should be executed first.
+# @name usuarios
+GET {{BASE}}/usuarios
+
+### Register a new usuarios and save the generated token 
+### This token is used in several of the below tests it should be executed second.
+# @name register
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"seguidores": ###REPLACE###,
+	"numPublicacion": ###REPLACE###
+}
+
+###
+@token = {{register.response.body.sessionToken}}
+
+### Test 01: Get one existing usuarios by its id.
+### positive test 
+@usuId = {usuarios.response.body.0.usuarioId}
+GET {{BASE}}/usuarios/{{usuId}} 
+Content-Type: application/json 
+
+
+### Test 02: Try get one existing usuarios by its nonexistent id.
+### negative test 
+GET {{BASE}}/usuarios/999999999
+Content-Type: application/json 
+
+
+### Test 03: Add a new usuarios successfully
+### Positive test 
+### We assume that the token has been aquired by the register request.
+POST {{BASE}}/usuarios 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"seguidores": ###REPLACE###,
+	"numPublicacion": ###REPLACE###
+} 
+
+### Test 04: Add a new usuarios without a session token
+### Negative test 
+POST {{BASE}}/usuarios 
+Content-Type: application/json 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"seguidores": ###REPLACE###,
+	"numPublicacion": ###REPLACE###
+}
+
+### Test 05: Modify an existing usuarios 
+### Positive test 
+@usuId = {{usuarios.response.body.0.usuarioId}} 
+PUT {{BASE}}/usuarios/{{usuId}} 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"seguidores": ###REPLACE###,
+	"numPublicacion": ###REPLACE###
+}
+
+### Test 06: Try to modify an existing usuarios without a session token
+### Negative test
+@usuId = {{usuarios.response.body.0.usuarioId}}
+PUT {{BASE}}/usuarios/{{usuId}}
+Content-Type: application/json
+
+{
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"seguidores": ###REPLACE###,
+	"numPublicacion": ###REPLACE###
+}
+
+### Test 07: Delete an existing usuarios
+### Positive test
+
+### Create a new usuarios, which we will delete
+# @name createdusuToDelete
+POST {{BASE}}/usuarios
+Content-Type: application/json
+Token: {{token}}
+
+{
+	"email": ###REPLACE###,
+	"PASSWORD": ###REPLACE###,
+	"nombre": ###REPLACE###,
+	"fechaAlta": ###REPLACE###,
+	"fechaBaja": ###REPLACE###,
+	"biografia": ###REPLACE###,
+	"direccion": ###REPLACE###,
+	"seguidores": ###REPLACE###,
+	"numPublicacion": ###REPLACE###
+}
+### Delete the usuarios
+@deptId = {createdusuToDelete.response.body.lastId}
+DELETE {{BASE}}/usuarios/{{usuId}}
+Token: {{token}}
+
+### Test 08: Try to delete a department without a session token
+### Negative test
+DELETE {{BASE}}/usuarios/{{usuId}}
+

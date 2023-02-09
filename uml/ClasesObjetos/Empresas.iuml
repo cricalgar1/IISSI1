@@ -1,0 +1,4 @@
+class "e1: Empresa"{
+    url = 'www.amazon.com'
+    tipoEmpresa = "transporte"
+}

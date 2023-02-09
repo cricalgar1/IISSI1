@@ -1,0 +1,176 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+###
+
+POST {{BASE}}/register
+Content-Type: application/json
+
+{ 
+	"email": "javi1@gmail.com",
+	"PASSWORD": "hola",
+	"nombre": "si",
+	"fechaAlta": "2021-10-12",
+	"fechaBaja": null,
+	"biografia": "uwu",
+	"direccion": "owo",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###
+
+#Hacer login (OK)
+# @name login
+
+POST {{BASE}}/login 
+Content-Type: application/json
+
+{
+    "email": "javi@gmail.com",
+    "password": "hola"
+}
+
+###
+@token = {{login.response.body.sessionToken}}
+
+
+###
+
+#Una empresa no puede crear una sala (FALLO)
+POST {{BASE}}/grupos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"nombreGrupo": "Prueba",
+	"fechaCreacion": "2021-12-03",
+	"numParticipante": "3",
+	"creador": "Amazon"
+} 
+
+###
+
+#Crear una sala con una cantidad no correcta de participantes (<3)(FALLO)
+POST {{BASE}}/grupos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"nombreGrupo": "Prueba",
+	"fechaCreacion": "2021-12-03",
+	"numParticipante": "2",
+	"creador": "si"
+} 
+
+###
+
+#Crear una sala con una cantidad no correcta de participantes (>10)(FALLO)
+POST {{BASE}}/grupos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"nombreGrupo": "Prueba",
+	"fechaCreacion": "2021-12-03",
+	"numParticipante": "12",
+	"creador": "si"
+}
+
+###
+
+#Crear una sala (OK)
+POST {{BASE}}/grupos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"nombreGrupo": "Prueba",
+	"fechaCreacion": "2021-12-03",
+	"numParticipante": "4",
+	"creador": "si"
+} 
+
+###
+
+#Pertenecer a una sala con uno o varios participantes sin vínculo activo (OK)
+POST {{BASE}}/vinculos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{ 
+	"activo": 1,
+	"fecha": "2020-02-15",
+	"fechaAceptacion": "2020-02-15",
+	"fechaRevocacion": null
+}
+
+###
+
+POST {{BASE}}/vinculosusuarios 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"vinculoId": 19,
+	"emisorId": 19,
+	"receptorId": 1
+} 
+
+###
+
+POST {{BASE}}/personasgrupos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"grupoId": 4,
+	"personaId": 19
+} 
+
+###
+
+POST {{BASE}}/personasgrupos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"grupoId": 4,
+	"personaId": 2
+} 
+
+###
+
+POST {{BASE}}/personasgrupos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"grupoId": 4,
+	"personaId": 1
+} 
+
+###
+
+POST {{BASE}}/personasgrupos 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"grupoId": 4,
+	"personaId": 5
+} 
+
+###
+
+GET {{BASE}}/vinculosusuarios
+
+###
+
+POST {{BASE}}/salas 
+Content-Type: application/json 
+Token: {{token}} 
+
+{
+	"grupoId": 4,
+	"conversacionId": 11
+} 

@@ -1,0 +1,74 @@
+{
+    "getAll": {
+        "route": "/usuarios",
+        "method": "GET",
+        "sql": "SELECT * FROM usuarios",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all usuarios"
+    },
+    "getById": {
+        "route": "/usuarios/$usuarioId",
+        "method": "GET",
+        "sql": "SELECT * FROM usuarios WHERE usuarioId = $usuarioId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'usuarios' by its primary key"
+    },
+    "create": {
+        "route": "/usuarios",
+        "method": "POST",
+        "sql": "INSERT INTO usuarios(email, PASSWORD, nombre, fechaAlta, fechaBaja, biografia, direccion, seguidores, numPublicacion) VALUES ($email, $PASSWORD, $nombre, $fechaAlta, $fechaBaja, $biografia, $direccion, $seguidores, $numPublicacion)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'usuarios'",
+        "request_body_params": [
+            "email",
+            "PASSWORD",
+            "nombre",
+            "fechaAlta",
+            "fechaBaja",
+            "biografia",
+            "direccion",
+            "seguidores",
+            "numPublicacion"
+        ]
+    },
+    "update": {
+        "route": "/usuarios/$usuarioId",
+        "method": "PUT",
+        "sql": "UPDATE usuarios SET email = $email, PASSWORD = $PASSWORD, nombre = $nombre, fechaAlta = $fechaAlta, fechaBaja = $fechaBaja, biografia = $biografia, direccion = $direccion, seguidores = $seguidores, numPublicacion = $numPublicacion WHERE usuarioId = $usuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'usuarios' by its primary key",
+        "request_body_params": [
+            "email",
+            "PASSWORD",
+            "nombre",
+            "fechaAlta",
+            "fechaBaja",
+            "biografia",
+            "direccion",
+            "seguidores",
+            "numPublicacion"
+        ]
+    },
+    "delete": {
+        "route": "/usuarios/$usuarioId",
+        "method": "DELETE",
+        "sql": "DELETE FROM usuarios WHERE usuarioId = $usuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'usuarios' by its primary key"
+    }
+}

@@ -1,0 +1,186 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+#Registrar un usuario sin todos los datos obligatorios. (ERROR)
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "manolo10@gmail.com",
+	"PASSWORD":"lidia1234",
+	"nombre": "lidia",
+	"fechaAlta": "2020-10-27",
+	"fechaBaja": null,
+	"biografia": null,
+	"direccion": "Avenida avenidosa nº4, 1C",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###Registar un usuario con email duplicado. (ERROR)
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "manolo10@gmail.com",
+	"PASSWORD":"lidia1234",
+	"nombre": "lidia",
+	"fechaAlta": "2020-10-27",
+	"fechaBaja": null,
+	"biografia": "ETSII",
+	"direccion": "Avenida avenidosa nº4, 1C",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###Introducir rangos de fechas inconsistentes. (ERROR)
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "hola@gmail.com",
+	"PASSWORD":"holaaa",
+	"nombre": "hola",
+	"fechaAlta": "2020-10-27",
+	"fechaBaja": "2019-9-1",
+	"biografia": "ETSII",
+	"direccion": "Avenida avenidosa nº4, 1C",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###Registramos usuario inactivo.
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "usuarioinactivo@gmail.com",
+	"PASSWORD":"contraseña",
+	"nombre": "inactivo",
+	"fechaAlta": "2020-10-27",
+	"fechaBaja": "2021-12-31",
+	"biografia": "Estoy inactivo",
+	"direccion": "Avenida avenidosa nº12",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###Hacemos login con el usuario inactivo. (ERROR)
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{
+    "email": "usuarioinactivo@gmail.com", 
+	"PASSWORD":"contraseña"
+}
+
+
+###Hacer login con un usuario activo con password incorrecta. (ERROR)
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{
+    "email": "manolo10@gmail.com", 
+    "PASSWORD": "incorrecta"
+}
+
+###Hacer login de un usuario inexistente. (ERROR)
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{
+    "email": "noexisto@gmail.com", 
+    "PASSWORD": "noexistire"
+}
+
+###Registrar un usuario nuevo con todos los datos obligatorios y correctos según todas
+# las reglas de negocio aplicables a una instancia de usuario (OK)
+# @name register
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "lidia@gmail.com",
+	"PASSWORD":"lidia1234",
+	"nombre": "lidia",
+	"fechaAlta": "2020-10-27",
+	"fechaBaja": null,
+	"biografia": "ETSII",
+	"direccion": "Avenida avenidosa nº4, 1C",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+
+
+### Hacer login tras registrarse. (OK)
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{
+    "email": "lidia@gmail.com", 
+    "PASSWORD": "lidia1234"
+}
+###
+
+@token = {{login.response.body.sessionToken}}
+
+###
+@idUsuario = {{login.response.body.user.usuarioId}}
+
+###Registrar una persona menor de edad. (ERROR)
+POST {{BASE}}/personas 
+Content-Type: application/json 
+Token: {{token}}
+
+{ 
+    "fechaNacimiento":"2020-10-27",
+    "altura" :159,
+    "peso" :55.3,
+    "genero" : "femenino",
+    "colorPelo": "gris",
+    "colorOjos" : "gris",
+	"usuarioId": {{idUsuario}}
+}
+
+###Que un usuario registrado pueda cambiar cualquiera de sus datos. (OK)
+PUT  {{BASE}}/usuarios/{{idUsuario}}
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "email": "lidia@gmail.com",
+	"PASSWORD":"lidia1234",
+	"nombre": "lidia",
+	"fechaAlta": "2020-10-27",
+	"fechaBaja": null,
+	"biografia": "ETSII La mejor universidad",
+	"direccion": "Avenida avenidosa nº4, 1A",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###Que un usuario registrado pueda darse de baja. (OK)
+PUT {{BASE}}/usuarios/{{idUsuario}}
+Content-Type: application/json
+Token: {{token}}
+
+{
+    "email": "lidia@gmail.com",
+	"PASSWORD":"lidia1234",
+	"nombre": "lidia",
+	"fechaAlta": "2020-10-27",
+	"fechaBaja": "2021-1-1",
+	"biografia": "ETSII La mejor universidad",
+	"direccion": "Avenida avenidosa nº4, 1A",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###Consultar los datos de un usuario dado de baja. (OK)
+GET {{BASE}}/usuarios/{{idUsuario}}
+
+###Borrar a un usuarios sin datos vinculados. (OK)
+DELETE {{BASE}}/usuarios/{{idUsuario}}
+Token: {{login.response.body.sessionToken}}

@@ -1,0 +1,9 @@
+class "c1: Conversacion" {
+    fechaInicio = '2021-07-14'
+    fechaFin= NULL
+}
+
+class "c2: Conversacion" {
+    fechaInicio = '2020-12-27'
+    fechaFin= NULL
+}

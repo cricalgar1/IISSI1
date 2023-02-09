@@ -1,0 +1,44 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+#Que un usuario nuevo pueda registrarse. (OK)
+###
+
+POST {{BASE}}/register
+Content-Type: application/json
+
+{ 
+	"email": "luis@gmail.com",
+	"PASSWORD": "no",
+	"nombre": "luis",
+	"fechaAlta": "2020-08-11",
+	"fechaBaja": null,
+	"biografia": "hola",
+	"direccion": "adios",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+###
+
+### Hacer login tras registrarse. (OK)
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{
+    "email": "luis@gmail.com", 
+    "PASSWORD": "no"
+}
+###
+
+@token = {{login.response.body.sessionToken}}
+
+
+###Poder eliminar mensajes conversaciones activas. (OK)
+DELETE {{BASE}}/mensajes/5
+Token: {{login.response.body.sessionToken}}
+
+###
+
+DELETE {{BASE}}/mensajes/1
+Token: {{login.response.body.sessionToken}}

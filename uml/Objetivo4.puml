@@ -1,0 +1,31 @@
+@startuml
+
+title Objetivo4
+!include Clases/Usuario.iuml
+!include Clases/Persona.iuml
+!include Clases/Empresa.iuml
+!include Clases/Vinculo.iuml
+!include Clases/Conversacion.iuml
+!include Clases/Mensaje.iuml
+!include style-md.iuml
+!include Enumerados/ColorOjo.iuml
+!include Enumerados/Genero.iuml
+!include Enumerados/ColorPelo.iuml
+!include Clases/Grupo.iuml
+!include Clases/Chat.iuml
+!include Clases/SalaDeChat.iuml
+
+
+ 
+Conversacion *--"*" Mensaje : compuesta de
+
+Usuario <|-l- (Empresa, Persona) : {completa, disjunta}
+Conversacion <|-l- (SalaDeChat, Chat) : {completa, disjunta}
+Persona "3..10"--"*" Grupo: pertenece a
+
+Usuario "2"--"*" Vinculo: tienen
+Chat *--"1" Vinculo: necesita
+SalaDeChat *--"1" Grupo: esta en
+
+
+@enduml

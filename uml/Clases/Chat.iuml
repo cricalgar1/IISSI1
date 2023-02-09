@@ -1,0 +1,5 @@
+@startuml Chat
+
+class Chat <<Entidad>>{
+   
+}

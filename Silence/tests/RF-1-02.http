@@ -1,0 +1,220 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+##Registramos usuario
+# @name register
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "mariadelaO@gmail.com",
+	"PASSWORD":"mari",
+	"nombre": "La famosa Maria de la O",
+	"fechaAlta": "2020-10-27",
+	"fechaBaja": null,
+	"biografia": "Desgraciadita",
+	"direccion": "Callejuela sevillana, 21",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+### Hacer login
+# @name login
+POST {{BASE}}/login 
+Content-Type: application/json 
+
+{
+    "email": "mariadelaO@gmail.com", 
+    "PASSWORD": "mari"
+}
+###
+
+@token = {{login.response.body.sessionToken}}
+###
+@idUsuario = {{login.response.body.user.usuarioId}}
+
+###Que los usuarios puedan incluir fotos. (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca1",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto1",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Foto 2 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca2",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto2",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Foto 3 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca3",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto3",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+###Foto 4 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca4",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto4",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Foto 5 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca5",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto5",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Foto 6 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca6",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto6",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Foto 7 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca7",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto7",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Foto 8 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca8",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto8",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Foto 9 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca9",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto9",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+ 
+###Foto 10 (OK)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca10",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto10",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Foto 11 (ERROR)
+POST {{BASE}}/fotos
+Content-type: application/json 
+Token: {{token}}
+
+{ 
+    "urlFoto": "https://www.iissi-friends.com/fotoFlamenca11",
+    "descripcion": "Bailando con las nenas",
+    "nombre": "foto11",
+    "fechaPublicacion": "2020-10-27",
+    "numLike": 0,
+    "tema": "baile",
+    "usuarioId": {{idUsuario}}
+}
+
+###Que los usuarios puedan modificar las fotos. (OK)
+PUt {{BASE}}/fotos/12
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "descripcion": "Con mis amigas",
+    "fechaPublicacion": "2020-2-1",
+    "nombre": "foto13update",
+    "numLike": 1,
+    "tema": "naturaleza",
+    "urlFoto": "www.iissi-friends.com/foto12",
+    "usuarioId": 10
+}
+
+###Que los usuarios puedan borrar las fotos. (OK)
+DELETE  {{BASE}}/fotos/13
+Token: {{login.response.body.sessionToken}}
+
+###Borrar un usuario con fotos. (ERROR)
+DELETE {{BASE}}/usuarios/{{idUsuario}}
+Token: {{token}}

@@ -1,0 +1,57 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+POST {{BASE}}/register
+Content-Type: application/json
+
+{
+    "email": "cris@gmail.com",
+    "password": "cris123",
+    "nombre": "cristina",
+    "fechaAlta": "2015/03/15",
+    "fechaBaja": null,
+    "biografia": "hola",
+    "direccion": "cualquiera",
+    "seguidores": 0,
+    "numPublicacion": 2
+}
+
+###
+
+# @name login
+
+POST {{BASE}}/login
+Content-Type: application/json
+
+{
+    "email": "cris@gmail.com",
+    "password": "cris123"
+}
+
+###
+
+@idUsuario = {{login.response.body.user.usuarioId}}
+
+###
+
+#Los usuarios puedan dar likes a las fotos (OK)
+
+POST {{BASE}}/likes
+Content-Type: application/json
+Token: {{login.response.body.sessionToken}}
+
+{
+    "fotoId": 2,
+    "emisorId": {{idUsuario}},
+    "fechaLike": "2021/07/17"
+}
+
+
+
+###
+
+#Los usuarios puedan eliminar likes a las fotos (OK)
+
+DELETE {{BASE}}/likes/11
+Token: {{login.response.body.sessionToken}}
+
+###

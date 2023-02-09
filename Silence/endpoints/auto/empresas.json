@@ -1,0 +1,60 @@
+{
+    "getAll": {
+        "route": "/empresas",
+        "method": "GET",
+        "sql": "SELECT * FROM empresas",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets all empresas"
+    },
+    "getById": {
+        "route": "/empresas/$usuarioId",
+        "method": "GET",
+        "sql": "SELECT * FROM empresas WHERE usuarioId = $usuarioId",
+        "auth_required": false,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Gets an entry from 'empresas' by its primary key"
+    },
+    "create": {
+        "route": "/empresas",
+        "method": "POST",
+        "sql": "INSERT INTO empresas(url, tipoEmpresa) VALUES ($url, $tipoEmpresa)",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Creates a new entry in 'empresas'",
+        "request_body_params": [
+            "url",
+            "tipoEmpresa"
+        ]
+    },
+    "update": {
+        "route": "/empresas/$usuarioId",
+        "method": "PUT",
+        "sql": "UPDATE empresas SET url = $url, tipoEmpresa = $tipoEmpresa WHERE usuarioId = $usuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Updates an existing entry in 'empresas' by its primary key",
+        "request_body_params": [
+            "url",
+            "tipoEmpresa"
+        ]
+    },
+    "delete": {
+        "route": "/empresas/$usuarioId",
+        "method": "DELETE",
+        "sql": "DELETE FROM empresas WHERE usuarioId = $usuarioId",
+        "auth_required": true,
+        "allowed_roles": [
+            "*"
+        ],
+        "description": "Deletes an existing entry in 'empresas' by its primary key"
+    }
+}

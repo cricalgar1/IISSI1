@@ -1,0 +1,18 @@
+  
+@startuml
+
+title Objetivo 3
+!include style-md.iuml
+!include Clases/FichaPreferencia.iuml
+!include Enumerados/Ubicacion.iuml
+!include Clases/Aficion.iuml
+!include Clases/Usuario.iuml
+!include Clases/Empresa.iuml
+!include Clases/Persona.iuml
+
+Usuario <|-l- (Empresa, Persona) : {completa, disjunta}
+Usuario "*"--"1" FichaPreferencia: usa
+Persona "*" -- "*" Aficion : tiene
+FichaPreferencia "*"--"*" Aficion: coge
+
+@enduml

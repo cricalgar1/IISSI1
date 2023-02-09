@@ -1,0 +1,33 @@
+@BASE = http://127.0.0.1:8080/api/v1
+
+# @name register
+POST {{BASE}}/register 
+Content-Type: application/json 
+
+{ 
+	"email": "daniel@gmail.com",
+	"PASSWORD":"1234",
+	"nombre": "daniel",
+	"fechaAlta": "2020-05-05",
+	"fechaBaja": null,
+	"biografia": "hola",
+	"direccion": "Calle falsa 123",
+	"seguidores": 0,
+	"numPublicacion": 0
+}
+
+### Hacer login de un usuario activo existente, suministrando password correcta (OK)
+# @name login
+POST {{BASE}}/login
+Content-Type: application/json
+
+{
+    "email": "daniel@gmail.com",
+    "password": "1234"
+}
+
+### Consultar todos los datos de un usuario dado su nombre. (OK)
+GET {{BASE}}/usuarios?nombre=daniel
+
+### Consultar todos los datos de un usuario no existente dado su nombre. (ERROR)
+GET {{BASE}}/usuarios?nombre=daniel1234

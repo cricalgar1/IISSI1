@@ -1,0 +1,13 @@
+Class TipoEmpresa <<Enumerado>>{
+    salud
+    educacion
+    hosteleria
+    ocio
+    viaje
+    comida
+    ropa
+    construccion
+    transporte
+    deporte
+    tecnologia
+}

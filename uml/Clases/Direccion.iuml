@@ -1,0 +1,5 @@
+Class Direccion <<Entidad>>{
+    codigoPostal
+    municipio
+    provincia
+}
